@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An educational portfolio case study analysing simulated cardiology sales and target performance with Excel, SQLite SQL and Power BI.">
+  <meta name="theme-color" content="#0b1933">
+  <title>Pharmaceutical Sales & Performance Analysis | Portfolio Case Study</title>
+  <style>
+    :root{color-scheme:light;--ink:#10223e;--muted:#53657b;--blue:#2358db;--teal:#008d89;--line:#dfe6f0;--bg:#f4f7fb;--white:#fff;--navy:#0b1933;--max:1160px}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+    a{color:#2455ca}
+    a:focus-visible{outline:3px solid #62c7ef;outline-offset:3px}
+    .container{max-width:var(--max);margin:auto;padding:0 28px}
+    .skip{position:absolute;left:-9999px;top:10px;z-index:100;background:#fff;padding:10px}
+    .skip:focus{left:10px}
+    .topnav{background:#0a1730;color:#fff;border-bottom:1px solid #31405e}
+    .nav-inner{display:flex;justify-content:space-between;gap:20px;align-items:center;padding:18px 28px}
+    .logo{color:#fff;text-decoration:none;letter-spacing:.035em;font-size:13px;font-weight:800}
+    .nav-links{display:flex;gap:25px;flex-wrap:wrap}
+    .nav-links a{color:#d6e1f5;text-decoration:none;font-size:13px;font-weight:600}
+    .nav-links a:hover{text-decoration:underline}
+    .hero{background:linear-gradient(125deg,#0b1933 0%,#102b5e 63%,#164b68 100%);color:#fff;padding:66px 0 81px}
+    .eyebrow{font-weight:700;letter-spacing:.15em;font-size:12px;text-transform:uppercase;color:#a9d8e8;margin:0 0 13px}
+    h1{font-size:clamp(36px,4.5vw,58px);letter-spacing:-.045em;line-height:1.12;max-width:940px;margin:0}
+    .hero-sub{max-width:780px;color:#d7e4f6;font-size:18px;margin:24px 0 25px}
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 28px}
+    .chip{font-size:12px;padding:6px 11px;border:1px solid #57708d;color:#e0edff;border-radius:999px}
+    .actions{display:flex;flex-wrap:wrap;gap:12px}
+    .btn{display:inline-flex;justify-content:center;align-items:center;padding:12px 18px;min-height:44px;border-radius:9px;text-decoration:none;font-weight:700;font-size:14px;transition:transform .15s}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{color:#0b1933;background:#fff}
+    .btn-outline{color:#fff;border:1px solid #91abce}
+    main{margin-top:-38px;position:relative}
+    .kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:38px}
+    .kpi{background:#fff;border:1px solid var(--line);border-radius:13px;padding:20px 16px;box-shadow:0 9px 24px rgba(17,36,70,.06);min-width:0}
+    .kpi strong{display:block;font-size:clamp(20px,2vw,26px);line-height:1.2;letter-spacing:-.035em;white-space:nowrap}
+    .kpi span{display:block;color:var(--muted);font-size:12px;margin-top:8px}
+    .kpi .positive{color:#067b65}
+    .section{padding:30px 0 36px}
+    .sectionhead{margin-bottom:19px;display:flex;align-items:end;justify-content:space-between;gap:20px}
+    h2{font-size:clamp(25px,3vw,34px);letter-spacing:-.035em;line-height:1.17;margin:0 0 9px}
+    h3{margin:0 0 11px;font-size:18px;letter-spacing:-.02em}
+    .desc{color:var(--muted);margin:0;max-width:820px}
+    .panel{border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:0 7px 25px rgba(20,42,78,.035)}
+    .dashboard{padding:13px}
+    .dashboard a{display:block;text-align:center}
+    .dashboard img{max-width:100%;width:100%;height:auto;display:block;border-radius:7px;border:1px solid #e7ebf1}
+    .figcaption{margin:10px 4px 4px;color:var(--muted);font-size:12px}
+    .twocol{display:grid;grid-template-columns:1.08fr .92fr;gap:18px}
+    .card{padding:25px}
+    .card p{margin:0 0 12px;color:var(--muted)}
+    .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+    .step{padding:23px}
+    .number{font-size:11px;font-weight:800;letter-spacing:.10em;color:#2358db;margin-bottom:11px}
+    .step p{font-size:14px;color:var(--muted);margin:0}
+    .findings{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .finding{padding:20px 22px}
+    .finding .ordinal{font-size:11px;color:#2358db;font-weight:800;letter-spacing:.12em;margin-bottom:7px}
+    .finding p{margin:0;color:var(--muted);font-size:14px}
+    .recommendations{padding:25px 27px}
+    .recommendations ol{margin:0;padding-left:23px}
+    .recommendations li{padding:4px 0 12px 6px}
+    .recommendations li:last-child{padding-bottom:0}
+    .recommendations p{color:var(--muted);margin:3px 0 0}
+    .files{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .file{padding:22px;display:flex;flex-direction:column;align-items:flex-start;gap:9px}
+    .file .f-type{color:var(--teal);font-size:11px;letter-spacing:.12em;font-weight:800}
+    .file strong{font-size:17px}
+    .file p{font-size:13px;color:var(--muted);margin:0 0 10px;flex:1}
+    .file a{font-size:14px;font-weight:750;text-decoration:none}
+    .file a:hover{text-decoration:underline}
+    .note{background:#eaf0f8;border-left:4px solid #3164ba;border-radius:0 8px 8px 0;padding:17px 20px;color:#2d405c;font-size:14px}
+    .note strong{color:#0b1933}
+    .footer{margin-top:42px;padding:27px 0;background:#0b1933;color:#cbd9ee;font-size:13px}
+    .footer .container{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .footer a{color:#e2eeff}
+    @media(max-width:900px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.twocol{grid-template-columns:1fr}.steps,.files{grid-template-columns:1fr 1fr}}
+    @media(max-width:640px){.container{padding:0 18px}.nav-inner{padding:16px 18px;align-items:flex-start;flex-direction:column;gap:10px}.nav-links{gap:14px}.hero{padding:48px 0 67px}.hero-sub{font-size:16px}.kpis{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.kpi{padding:15px 13px}.kpi strong{font-size:23px}.kpi:last-child{grid-column:span 2}.section{padding:22px 0}.dashboard{padding:7px}.findings,.steps,.files{grid-template-columns:1fr}.card,.recommendations{padding:20px}.sectionhead{display:block}.figcaption{font-size:11px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <nav class="topnav" aria-label="Site navigation"><div class="container nav-inner">
+    <a class="logo" href="#top">PORTFOLIO / ANALYTICS CASE STUDY</a>
+    <div class="nav-links"><a href="#dashboard">Dashboard</a><a href="#findings">Findings</a><a href="#method">Method</a><a href="#files">Project files</a></div>
+  </div></nav>
+
+  <header class="hero" id="top"><div class="container">
+    <p class="eyebrow">Pharmaceutical analytics · 2025 case study</p>
+    <h1>Pharmaceutical Sales &amp; Performance Analysis</h1>
+    <p class="hero-sub">Which cardiology products and regions missed sales targets — and where should the business investigate first? An Excel, SQL and Power BI portfolio analysis of a clearly labelled simulated dataset.</p>
+    <div class="chips"><span class="chip">Excel</span><span class="chip">SQLite SQL</span><span class="chip">Power BI</span><span class="chip">4 products</span><span class="chip">4 regions</span><span class="chip">January–December 2025</span><span class="chip">Simulated data</span></div>
+    <div class="actions"><a class="btn btn-primary" href="#dashboard">Explore dashboard ↓</a><a class="btn btn-outline" href="Pharmaceutical_Sales_Findings_2025.pdf" target="_blank" rel="noopener">Read one-page report ↗</a></div>
+  </div></header>
+
+  <main id="main" class="container">
+    <section class="kpis" aria-label="Portfolio performance summary">
+      <div class="kpi"><strong>₹56.91L</strong><span>2025 net sales</span></div>
+      <div class="kpi"><strong>₹56.64L</strong><span>2025 sales target</span></div>
+      <div class="kpi"><strong class="positive">100.48%</strong><span>Target achievement</span></div>
+      <div class="kpi"><strong class="positive">+₹27,001</strong><span>Annual sales variance (rounded)</span></div>
+      <div class="kpi"><strong>₹3.48L</strong><span>Cumulative monthly shortfalls</span></div>
+    </section>
+
+    <section id="dashboard" class="section" aria-labelledby="dashboard-title">
+      <div class="sectionhead"><div><p class="eyebrow" style="color:#2358db">The dashboard</p><h2 id="dashboard-title">Portfolio performance at a glance</h2><p class="desc">A Power BI dashboard with five KPI cards, monthly sales-versus-target trends, product comparisons, region achievement and product/region slicers.</p></div></div>
+      <div class="panel dashboard"><a href="dashboard_overview.png" target="_blank" rel="noopener" aria-label="Open full-size Power BI dashboard screenshot"><img src="dashboard_overview.png" alt="Power BI dashboard showing five KPIs, monthly sales-versus-target line chart, product sales comparison and region target-achievement chart" loading="eager"></a><p class="figcaption">Screenshot of the completed Power BI report with filters cleared. Select the image to view it full size. This is a static screenshot, not a publicly hosted interactive Power BI report.</p></div>
+    </section>
+
+    <section class="section" aria-labelledby="context-title"><div class="twocol">
+      <div class="panel card"><p class="eyebrow" style="color:#2358db">The business problem</p><h2 id="context-title">Look beyond annual totals</h2><p>The simulated portfolio slightly exceeded its annual sales target. Yet aggregated results concealed individual products, regions and months that repeatedly fell short.</p><p><strong>Decision focus:</strong> help a National Sales Head and Regional Sales Manager prioritise investigation using target achievement, monetary gaps and missed-month frequency.</p></div>
+      <div class="panel card"><p class="eyebrow" style="color:#2358db">Dataset at a glance</p><h3>Purpose-built synthetic data</h3><p>960 simulated transaction records and 192 unique monthly target records cover four cardiology medicines across North, South, East and West during 2025.</p><p>The dataset is educational and does not reflect actual company revenue, prescriptions, prescribing behaviour or market share.</p></div>
+    </div></section>
+
+    <section id="findings" class="section" aria-labelledby="findings-title">
+      <div class="sectionhead"><div><p class="eyebrow" style="color:#2358db">Evidence from the analysis</p><h2 id="findings-title">Five key findings</h2><p class="desc">Observed patterns below come exclusively from the simulated dataset; they are not evidence of real pharmaceutical performance.</p></div></div>
+      <div class="findings">
+        <article class="panel finding"><div class="ordinal">01 / OVERALL</div><h3>Annual success can mask shortfalls</h3><p>Annual achievement reached 100.48%, while the sum of product–region–month shortfalls was ₹3,48,218.45.</p></article>
+        <article class="panel finding"><div class="ordinal">02 / PRODUCT</div><h3>Two medicines missed annual targets</h3><p>Metoprolol achieved 97.91% and Atorvastatin achieved 98.16%; Amlodipine and Telmisartan exceeded their annual targets.</p></article>
+        <article class="panel finding"><div class="ordinal">03 / REGION</div><h3>East and North fell below target</h3><p>East achieved 99.68%, and North achieved 99.75%. West and South exceeded 100% annual achievement.</p></article>
+        <article class="panel finding"><div class="ordinal">04 / TIME</div><h3>June was the weakest target month</h3><p>June recorded 94.13% achievement, a ₹27,488.95 monthly portfolio shortfall and −8.59% month-over-month growth.</p></article>
+        <article class="panel finding" style="grid-column:1/-1"><div class="ordinal">05 / RECURRING GAPS</div><h3>Frequency reveals a different priority</h3><p>Atorvastatin–East (₹36,651.25) and Metoprolol–West (₹36,545.70) had the largest highlighted cumulative monthly gaps. Metoprolol–South missed targets in 8 of 12 months — the most frequent misses among the reviewed combinations — with ₹33,781.49 in cumulative shortfalls.</p></article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="actions-title"><div class="sectionhead"><div><p class="eyebrow" style="color:#2358db">What management could do</p><h2 id="actions-title">Recommended investigation priorities</h2></div></div>
+      <div class="panel recommendations"><ol>
+        <li><strong>Review Metoprolol in South first for consistency.</strong><p>Eight missed months suggest a recurring pattern worth examining. This choice prioritises frequency, not the single largest financial gap.</p></li>
+        <li><strong>Review Atorvastatin–East and Metoprolol–West for monetary impact.</strong><p>These combinations have larger cumulative monthly shortfalls and merit separate investigation.</p></li>
+        <li><strong>Introduce monthly exception monitoring.</strong><p>Track sales versus target, shortfall value and missed-month counts. Investigate June using additional operational data before inferring causes.</p></li>
+      </ol></div>
+    </section>
+
+    <section id="method" class="section" aria-labelledby="method-title">
+      <div class="sectionhead"><div><p class="eyebrow" style="color:#2358db">How the analysis was built</p><h2 id="method-title">Excel → SQL → Power BI</h2></div></div>
+      <div class="steps">
+        <div class="panel step"><div class="number">01 / PREPARE</div><h3>Excel</h3><p>Structured product, region, sales and target data; documented field definitions; checked row counts, blanks, duplicates and arithmetic.</p></div>
+        <div class="panel step"><div class="number">02 / ANALYSE</div><h3>SQLite SQL</h3><p>Used aggregates, joins, CTEs, conditional logic and LAG to compare products, regions, months and recurring gaps.</p></div>
+        <div class="panel step"><div class="number">03 / VISUALISE</div><h3>Power BI</h3><p>Built DAX measures, dimension-to-fact relationships, three charts and slicers; reconciled selected KPI totals with SQL.</p></div>
+      </div>
+      <div class="note" style="margin-top:16px"><strong>How double-counting was avoided:</strong> sales transactions and monthly targets stay in separate fact tables. SQL first aggregates sales to product–region–month level before comparison; shared product, region and month dimensions filter both tables in Power BI.</div>
+    </section>
+
+    <section id="files" class="section" aria-labelledby="files-title"><div class="sectionhead"><div><p class="eyebrow" style="color:#2358db">Supporting evidence</p><h2 id="files-title">Explore the project files</h2><p class="desc">Read the findings in-browser or open the source queries. Everything listed here uses simulated or original project material.</p></div></div>
+      <div class="files">
+        <div class="panel file"><span class="f-type">PDF · ONE PAGE</span><strong>Findings &amp; Recommendations</strong><p>Five evidence-backed findings, investigative priorities and limitations.</p><a href="Pharmaceutical_Sales_Findings_2025.pdf" target="_blank" rel="noopener">Open PDF report ↗</a></div>
+        <div class="panel file"><span class="f-type">SQL · COMMENTED</span><strong>SQL Analysis Queries</strong><p>13 queries documenting validation, trends, target comparisons and shortfalls.</p><a href="Cardiology_Sales_Portfolio_Analysis.sql" target="_blank" rel="noopener">View SQL file ↗</a></div>
+        <div class="panel file"><span class="f-type">EXCEL · SIMULATED DATA</span><strong>Supporting Dataset</strong><p>960 simulated sales transactions, 192 monthly targets, product and region master tables, and generation notes.</p><a href="Cardiology_2025_SIMULATED_DataPack.xlsx" download>Download Excel dataset ↗</a></div>
+        <div class="panel file"><span class="f-type">GITHUB · DOCUMENTATION</span><strong>Methodology &amp; KPI Definitions</strong><p>Project scope, KPI definitions, data grain, quality checks and how to reproduce the analysis.</p><a href="https://github.com/aanchal-70/pharmaceutical-sales-analysis#readme" target="_blank" rel="noopener">Read project README ↗</a></div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="limits-title"><div class="note"><h3 id="limits-title">Data transparency and limitations</h3><strong>All data is synthetic.</strong> This project uses 960 artificial transactions and 192 artificial targets for learning and portfolio demonstration. It does not include actual client, employer, doctor-coverage, inventory, competition, profitability or field-force data. Patterns cannot establish underlying causes; recommendations were not implemented and no business impact is claimed. The Power BI report is represented here by a screenshot, not an interactive public embed.</div></section>
+  </main>
+  <footer class="footer"><div class="container"><span>Pharmaceutical Sales &amp; Performance Analysis · Educational portfolio case study</span><span><a href="https://github.com/aanchal-70/pharmaceutical-sales-analysis" target="_blank" rel="noopener">GitHub project repository ↗</a></span></div></footer>
+</body>
+</html>
