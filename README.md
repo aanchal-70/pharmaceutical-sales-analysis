@@ -82,15 +82,16 @@ The annual KPI SQL query was run and reconciled with the Power BI dashboard. The
 **Observed pattern is not proof of cause:** This synthetic dataset does not establish *why* a product or region underperformed.
 
 ## Deliverables and how to explore
+- [View Portfolio Website](https://aanchal-70.github.io/pharmaceutical-sales-analysis/)
+- [View Power BI Dashboard Screenshot](dashboard_overview.png)
+- [Read Findings & Recommendations](Pharmaceutical_Sales_Findings_2025.pdf)
+- [Explore Commented SQL Queries](Cardiology_Sales_Portfolio_Analysis.sql)
+- [Download Simulated Excel Dataset](Cardiology_2025_SIMULATED_DataPack.xlsx)
 
-- **Power BI dashboard:** `Cardiology_Sales_Dashboard.pbix` — five KPI cards, product and regional comparison charts, monthly sales-vs-target trend, and interactive product/region slicers. Requires Power BI Desktop to open locally.
-- **One-page findings report:** `Project_Report/Pharmaceutical_Sales_Findings_2025.pdf` (editable `.docx` version also available).
-- **Commented SQLite queries:** `SQL_Queries/Cardiology_Sales_Portfolio_Analysis.sql` (13 numbered SELECT analyses/checks).
-- **Synthetic dataset:** `Cardiology_2025_SIMULATED_DataPack.xlsx`; separate CSVs for sales and targets.
-- **Data dictionary and notes:** included in the Excel project materials.
-- **Public dashboard screenshot / online project page:** **to be added before publication.** A live interactive Power BI report has **not** been publicly published.
+The public dashboard is presented as a screenshot.
+The interactive Power BI report has not been published online.
 
-*File paths above describe the intended final portfolio folder layout. The public repository and its links will be checked after upload.*
+All sales and target data are simulated.
 
 ## Assumptions and limitations
 
