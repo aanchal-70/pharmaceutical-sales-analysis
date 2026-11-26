@@ -1,7 +1,7 @@
 # Pharmaceutical Sales & Performance Analysis
 ### Cardiology portfolio | January–December 2025 | **SIMULATED DATA**
 
-**Project status:** Analysis and Power BI dashboard developed and validated for selected KPI/filter checks. Portfolio publication and public-viewing tests are **not yet complete**.
+**Project status:** Analysis and Power BI dashboard developed and validated for selected KPI/filter checks. Portfolio publication and public-viewing tests are **not yet complete**
 
 > **Data transparency:** All sales transactions and targets are synthetic, created for an educational portfolio project. They do not represent a pharmaceutical company's actual sales, prescriptions, market share, or results. No employer or client data were used.
 
